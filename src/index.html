@@ -1,13 +1,20 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Omi</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src='https://8x8.vc/vpaas-magic-cookie-c25fa0da2cd344ba8d41a873768065ec/external_api.js' async></script>
+    <style>html, body, #jaas-container { height: 100%; }</style>
+    <script type="text/javascript">
+      window.onload = () => {
+        const api = new JitsiMeetExternalAPI("8x8.vc", {
+          roomName: "vpaas-magic-cookie-c25fa0da2cd344ba8d41a873768065ec/SampleAppVariableAlignmentsEmphasizeSeldom",
+          parentNode: document.querySelector('#jaas-container'),
+          // Make sure to include a JWT if you intend to record,
+          // make outbound calls or use any other premium features!
+          // jwt: "eyJraWQiOiJ2cGFhcy1tYWdpYy1jb29raWUtYzI1ZmEwZGEyY2QzNDRiYThkNDFhODczNzY4MDY1ZWMvMGJkN2UyLVNBTVBMRV9BUFAiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJqaXRzaSIsImlzcyI6ImNoYXQiLCJpYXQiOjE3MTg2NTk1OTMsImV4cCI6MTcxODY2Njc5MywibmJmIjoxNzE4NjU5NTg4LCJzdWIiOiJ2cGFhcy1tYWdpYy1jb29raWUtYzI1ZmEwZGEyY2QzNDRiYThkNDFhODczNzY4MDY1ZWMiLCJjb250ZXh0Ijp7ImZlYXR1cmVzIjp7ImxpdmVzdHJlYW1pbmciOmZhbHNlLCJvdXRib3VuZC1jYWxsIjpmYWxzZSwic2lwLW91dGJvdW5kLWNhbGwiOmZhbHNlLCJ0cmFuc2NyaXB0aW9uIjpmYWxzZSwicmVjb3JkaW5nIjpmYWxzZX0sInVzZXIiOnsiaGlkZGVuLWZyb20tcmVjb3JkZXIiOmZhbHNlLCJtb2RlcmF0b3IiOnRydWUsIm5hbWUiOiJUZXN0IFVzZXIiLCJpZCI6Imdvb2dsZS1vYXV0aDJ8MTA3NTkzMDI3MjQwNjYwNDg2MzQyIiwiYXZhdGFyIjoiIiwiZW1haWwiOiJ0ZXN0LnVzZXJAY29tcGFueS5jb20ifX0sInJvb20iOiIqIn0.eIUFY373eP1dcZj8O7KMMSAXMhxKvlH6TQauOAjgsGnGE4scvTzOTN5NJOthLzW6yYti5R0uoWe9ruWlJD709z9qpf6NJxbRzLhNpjf6TkRAxS0LkRKbs2P9qEluSlkySpHHJDrWnlfTxlurXcNWuRxsh7Ym9TltjByJSMc7uLhLX7p2J-A3OjFGXB_ZFTHntkywUc_riWMDOE7ayOayrJi0V60qcprpVZDVd8ieMQS50ewNrWZmQwjHho4JaR12iqlVGMrZON91CUNhwQwSpyYdp4HyHPz8wFX365xexB1fjW8VkyQyRL1qouyhOVMOgh1bIInPXHq_5EDOf3dUow"
+        });
+      }
+    </script>
+  </head>
+  <body><div id="jaas-container" /></body>
 </html>
