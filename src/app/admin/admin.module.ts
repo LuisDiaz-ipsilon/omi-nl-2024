@@ -7,21 +7,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContentService } from '../services/content.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { EditorInicioComponent } from './editor-inicio/editor-inicio.component';
+import { NgxEditorModule } from 'ngx-editor';
+import { EditorGaleriaComponent } from './editor-galeria/editor-galeria.component';
 
 
 @NgModule({
-  declarations: [
-    DashboardAdminComponent,
-    EditorInicioComponent
-
-  ],
+  declarations: [DashboardAdminComponent, EditorInicioComponent, EditorGaleriaComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
     ReactiveFormsModule,
-    
-    
+    NgxEditorModule,
+    FormsModule
   ],
   providers: [ContentService],
 })
-export class AdminModule { }
+export class AdminModule {}

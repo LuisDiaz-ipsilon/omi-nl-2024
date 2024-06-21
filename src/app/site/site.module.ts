@@ -10,13 +10,13 @@ import { EnlacesModule } from './enlaces/enlaces.module';
 import { MaterialesModule } from './materiales/materiales.module';
 import { EjemplosModule } from './ejemplos/ejemplos.module';
 import { ExamenesModule } from './examenes/examenes.module';
+import { RouteReuseStrategy } from '@angular/router';
+import { CustomRouteReuseStrategy } from '../utils/custom-route-reuse-strategy';
+import { NgxEditorModule } from 'ngx-editor';
 
 
 @NgModule({
-  declarations: [
-    DashboardComponent,
-
-  ],
+  declarations: [DashboardComponent],
   imports: [
     CommonModule,
     SiteRoutingModule,
@@ -26,8 +26,10 @@ import { ExamenesModule } from './examenes/examenes.module';
     MaterialesModule,
     EjemplosModule,
     ExamenesModule,
-    
+    NgxEditorModule
   ],
-
+  providers: [
+    { provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy },
+  ],
 })
-export class SiteModule { }
+export class SiteModule {}

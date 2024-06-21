@@ -6,6 +6,10 @@ import { InicioComponent } from './inicio.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { NlnComponent } from './nln/nln.component';
 import { MioiComponent } from './mioi/mioi.component';
+import { ConvocatoriaComponent } from './convocatoria/convocatoria.component';
+import { DonacionComponent } from './donacion/donacion.component';
+import { NgxEditorModule } from 'ngx-editor';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,11 +17,10 @@ import { MioiComponent } from './mioi/mioi.component';
     InicioComponent,
     CarouselComponent,
     NlnComponent,
-    MioiComponent
+    MioiComponent,
+    ConvocatoriaComponent,
+    DonacionComponent,
   ],
-  imports: [
-    CommonModule,
-    InicioRoutingModule,
-  ]
+  imports: [CommonModule, InicioRoutingModule, NgxEditorModule, FormsModule],
 })
-export class InicioModule { }
+export class InicioModule {}

@@ -1,16 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ContentService } from 'src/app/services/content.service';
 
 @Component({
   selector: 'app-nln',
   templateUrl: './nln.component.html',
-  styleUrls: ['./nln.component.scss']
+  styleUrls: ['./nln.component.scss'],
 })
-export class NlnComponent {
-  title = 'Olimpiada Nacional de Informática';
-  description = `
-    Nuevo León ha sido un participante destacado en la Olimpiada Nacional de Informática (ONI), 
-    demostrando constantemente un alto nivel de competencia y habilidades en el ámbito de la programación 
-    y resolución de problemas. La ONI es un evento anual que reúne a jóvenes talentos de todo México para 
-    competir en diversas pruebas de informática, poniendo a prueba sus conocimientos y habilidades técnicas.
-  `;
+export class NlnComponent implements OnInit {
+  title: string = 'Test ';
+  description: string = 'Test ';
+
+  constructor(private contentService: ContentService) {}
+
+  ngOnInit(): void {
+    this.title = this.contentService.getTitleNln();
+    this.description = this.contentService.getDescriptionNln();
+  }
+
+
 }

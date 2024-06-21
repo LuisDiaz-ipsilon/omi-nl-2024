@@ -16,20 +16,19 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       { path: '', redirectTo: 'inicio', pathMatch: 'full' },
-      //{ path: 'inicio',  loadChildren: () => import('./inicio/inicio.module').then(m => m.InicioModule) },
-      {path: 'inicio', component: InicioComponent },
-      {path: 'galeria', component: GaleriaComponent },
-      {path: 'enlaces', component: EnlacesComponent },
-      {path: 'materiales', component: MaterialesComponent },
-      {path: 'ejemplos', component: EjemplosComponent },
-      {path: 'examenes', component: ExamenesComponent },
-    ]
+      { path: 'inicio', component: InicioComponent },
+      { path: 'galeria', component: GaleriaComponent },
+      { path: 'enlaces', component: EnlacesComponent },
+      { path: 'materiales', component: MaterialesComponent },
+      { path: 'ejemplos', component: EjemplosComponent },
+      { path: 'examenes', component: ExamenesComponent },
+    ],
   },
   {
-    path: '**', redirectTo: '', pathMatch: 'full'
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full',
   },
-
-
 ];
 
 @NgModule({

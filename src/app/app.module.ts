@@ -5,18 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SiteModule } from './site/site.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouteReuseStrategy } from '@angular/router';
+import { CustomRouteReuseStrategy } from './utils/custom-route-reuse-strategy';
 
 @NgModule({
-  declarations: [
-    AppComponent
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, SiteModule, ReactiveFormsModule],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy },
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    SiteModule,
-    ReactiveFormsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
