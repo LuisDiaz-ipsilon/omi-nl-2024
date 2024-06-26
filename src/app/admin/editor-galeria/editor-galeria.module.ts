@@ -6,7 +6,7 @@ import { EditorGaleriaComponent } from './editor-galeria.component';
 
 @NgModule({
   declarations: [
-    EditorGaleriaComponent
+
   ],
   imports: [
     CommonModule

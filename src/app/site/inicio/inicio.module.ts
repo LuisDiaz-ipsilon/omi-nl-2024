@@ -10,6 +10,8 @@ import { ConvocatoriaComponent } from './convocatoria/convocatoria.component';
 import { DonacionComponent } from './donacion/donacion.component';
 import { NgxEditorModule } from 'ngx-editor';
 import { FormsModule } from '@angular/forms';
+import { ContentService } from 'src/app/services/content.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -19,8 +21,9 @@ import { FormsModule } from '@angular/forms';
     NlnComponent,
     MioiComponent,
     ConvocatoriaComponent,
-    DonacionComponent,
+    DonacionComponent
   ],
-  imports: [CommonModule, InicioRoutingModule, NgxEditorModule, FormsModule],
+  imports: [CommonModule, InicioRoutingModule, NgxEditorModule, FormsModule, HttpClientModule],
+  providers: [ContentService],
 })
 export class InicioModule {}

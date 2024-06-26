@@ -5,11 +5,18 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class ContentService {
-  private contentSource = new BehaviorSubject<string>('');
+  // Creamos un BehaviorSubject para manejar el estado del contenido
+  private contentSource = new BehaviorSubject<string>('TEST');
+  // Observable que otros componentes pueden suscribirse para obtener el contenido actual
   currentContent = this.contentSource.asObservable();
 
-  updateContent(content: string): void {
+  // Método para actualizar el contenido
+  updateContent(content: string) {
     this.contentSource.next(content);
+  }
+
+  getContent() {
+    return this.contentSource.getValue();
   }
 
   constructor() {}

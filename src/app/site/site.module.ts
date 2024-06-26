@@ -26,7 +26,8 @@ import { NgxEditorModule } from 'ngx-editor';
     MaterialesModule,
     EjemplosModule,
     ExamenesModule,
-    NgxEditorModule
+    NgxEditorModule,
+
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy },

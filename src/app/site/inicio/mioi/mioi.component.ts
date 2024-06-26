@@ -18,11 +18,8 @@ export class MioiComponent implements OnInit {
 
   content: string = 'Texto prueba';
 
-  constructor(private contentService: ContentService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.contentService.currentContent.subscribe(
-      (content) => (this.content = content)
-    );
   }
 }

@@ -9,7 +9,7 @@ import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
   declarations: [
-    EditorInicioComponent
+
   ],
   imports: [
     CommonModule,

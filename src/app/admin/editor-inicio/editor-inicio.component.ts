@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Editor } from 'ngx-editor';
 import { ContentService } from 'src/app/services/content.service';
 
@@ -12,37 +11,31 @@ export class EditorInicioComponent implements OnInit, OnDestroy {
   editor!: Editor;
   html = '';
 
+  constructor(public contentService: ContentService) {}
+
   ngOnInit(): void {
+    // Inicializar el editor
     this.editor = new Editor();
 
+    // Suscribirse al contenido actual para mantener actualizado el HTML
     this.contentService.currentContent.subscribe(
       (content) => (this.html = content)
     );
   }
 
-  // make sure to destory the editor
   ngOnDestroy(): void {
+    // Asegurarse de destruir el editor para liberar recursos
     this.editor.destroy();
   }
 
-  onContentChange(): void {
+  // Método que se llama cuando el contenido cambia
+  onContentChange(content: string): void {
+    this.html = content;
+  }
+
+  confirmContent(): void {
+    // Actualizar el contenido en el servicio
+    console.log('Contenido confirmado: ' + this.html);
     this.contentService.updateContent(this.html);
-  }
-
-  contentFormNln: FormGroup;
-
-  constructor(public contentService: ContentService, private fb: FormBuilder) {
-    this.contentFormNln = this.fb.group({
-      titleNln: [this.contentService.getTitleNln()],
-      descriptionNln: [this.contentService.getDescriptionNln()],
-    });
-  }
-
-  onSubmitNln(): void {
-    const formValue = this.contentFormNln.value;
-    this.contentService.updateContentNln(
-      formValue.titleNln,
-      formValue.descriptionNln
-    );
   }
 }

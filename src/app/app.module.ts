@@ -8,9 +8,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouteReuseStrategy } from '@angular/router';
 import { CustomRouteReuseStrategy } from './utils/custom-route-reuse-strategy';
 
+
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, SiteModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    SiteModule,
+    ReactiveFormsModule,
+
+  ],
   providers: [
     { provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy },
   ],
