@@ -18,9 +18,9 @@ export class EditorInicioComponent implements OnInit, OnDestroy {
     this.editor = new Editor();
 
     // Suscribirse al contenido actual para mantener actualizado el HTML
-    this.contentService.currentContent.subscribe(
+    /*this.contentService.currentContent.subscribe(
       (content) => (this.html = content)
-    );
+    );*/
   }
 
   ngOnDestroy(): void {
@@ -36,6 +36,6 @@ export class EditorInicioComponent implements OnInit, OnDestroy {
   confirmContent(): void {
     // Actualizar el contenido en el servicio
     console.log('Contenido confirmado: ' + this.html);
-    this.contentService.updateContent(this.html);
+
   }
 }

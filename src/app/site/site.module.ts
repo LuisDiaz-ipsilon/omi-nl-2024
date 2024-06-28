@@ -13,6 +13,9 @@ import { ExamenesModule } from './examenes/examenes.module';
 import { RouteReuseStrategy } from '@angular/router';
 import { CustomRouteReuseStrategy } from '../utils/custom-route-reuse-strategy';
 import { NgxEditorModule } from 'ngx-editor';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -27,7 +30,8 @@ import { NgxEditorModule } from 'ngx-editor';
     EjemplosModule,
     ExamenesModule,
     NgxEditorModule,
-
+    provideFirestore(() => getFirestore()),
+    //AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy },

@@ -1,11 +1,11 @@
 export const environment = {
-    production: false,
-    firebaseConfig: {
-    apiKey: 'AIzaSyAedU5iXZniSLjyltRtIXQdT9KArvqDjGk',
-    authDomain: 'ss-omi.firebaseapp.com',
-    projectId: 'ss-omi',
-    storageBucket: 'ss-omi.appspot.com',
-    messagingSenderId: '511318274817',
-    appId: '1:511318274817:web:69b21036faa7998dc2e100',
-  }
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyA2WYTM3-I9ZU5lfVxNZDe2Dt_BgiyDkMQ',
+    authDomain: 'db-data-ss-omi.firebaseapp.com',
+    projectId: 'db-data-ss-omi',
+    storageBucket: 'db-data-ss-omi.appspot.com',
+    messagingSenderId: '277027403900',
+    appId: '1:277027403900:web:8b787af2ade2d997c9b1f9',
+  },
 };

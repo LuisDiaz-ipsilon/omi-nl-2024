@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Firestore, collectionData, docData } from '@angular/fire/firestore';
+import { BehaviorSubject, Observable } from 'rxjs';
+import Content from '../interfaces/content.interface';
+import { DocumentReference, addDoc, collection, doc, updateDoc } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -10,16 +13,30 @@ export class ContentService {
   // Observable que otros componentes pueden suscribirse para obtener el contenido actual
   currentContent = this.contentSource.asObservable();
 
-  // Método para actualizar el contenido
-  updateContent(content: string) {
-    this.contentSource.next(content);
+  constructor(private firestore: Firestore) {}
+
+  getContent(): Observable<Content[]> {
+    const textRef = collection(this.firestore, 'contents');
+    return collectionData(textRef, { idField: 'id' }) as Observable<Content[]>;
   }
 
-  getContent() {
-    return this.contentSource.getValue();
+  getContentById(id: string): Observable<Content> {
+    const contentDocRef = doc(this.firestore, `contents/${id}`);
+    return docData(contentDocRef, { idField: 'id' }) as Observable<Content>;
   }
 
-  constructor() {}
+  updateContent(content: Content): Promise<void> {
+    const contentDocRef = doc(this.firestore, `contents/${content.id}`);
+    return updateDoc(contentDocRef, {
+      nombre: content.nombre,
+      contenido: content.contenido,
+    });
+  }
+
+  addContent(content: Content): Promise<DocumentReference> {
+    const contentRef = collection(this.firestore, 'contents');
+    return addDoc(contentRef, content);
+  }
 
   private _titleNln = 'Olimpiada Nacional de Informática';
   private _descriptionNln = `
