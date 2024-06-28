@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Editor } from 'ngx-editor';
+import Content from 'src/app/interfaces/content.interface';
 import { ContentService } from 'src/app/services/content.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { ContentService } from 'src/app/services/content.service';
 export class EditorInicioComponent implements OnInit, OnDestroy {
   editor!: Editor;
   html = '';
+  private content: Content | undefined;
 
   constructor(public contentService: ContentService) {}
 
@@ -17,10 +19,39 @@ export class EditorInicioComponent implements OnInit, OnDestroy {
     // Inicializar el editor
     this.editor = new Editor();
 
-    // Suscribirse al contenido actual para mantener actualizado el HTML
-    /*this.contentService.currentContent.subscribe(
-      (content) => (this.html = content)
-    );*/
+    //Escribir lo que contenga el registro actual con el id 1
+    this.getContentById('1');
+  }
+
+  confirmContent(): void {
+    // Actualizar el contenido en el servicio
+    this.content!.id = '1'
+    this.content!.nombre = 'inicio'
+    this.content!.contenido = this.html
+    this.updateContent(this.content!);
+  }
+
+  getContentById(id: string): void {
+    this.contentService.getContentById(id).subscribe(
+      (data: Content) => {
+        this.content = data;
+        this.html = this.content.contenido;
+      },
+      (error) => {
+        console.error('Error fetching content:', error);
+      }
+    );
+  }
+
+  updateContent(content: Content): void {
+    this.contentService
+      .updateContent(content)
+      .then(() => {
+        console.log('Contenido actualizado correctamente.');
+      })
+      .catch((error) => {
+        console.error('Error actualizando contenido:', error);
+      });
   }
 
   ngOnDestroy(): void {
@@ -30,12 +61,6 @@ export class EditorInicioComponent implements OnInit, OnDestroy {
 
   // Método que se llama cuando el contenido cambia
   onContentChange(content: string): void {
-    this.html = content;
-  }
-
-  confirmContent(): void {
-    // Actualizar el contenido en el servicio
-    console.log('Contenido confirmado: ' + this.html);
-
+    //this.html = content;
   }
 }
