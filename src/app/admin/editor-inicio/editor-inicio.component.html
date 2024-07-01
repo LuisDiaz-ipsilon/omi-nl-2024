@@ -1,6 +1,6 @@
-<div class="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md">
-  <div class="NgxEditor__Wrapper">
-    <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+<div class="max-w-4xl mx-auto p-5 bg-white rounded-lg shadow-md">
+  <div class="padup NgxEditor__Wrapper">
+    <ngx-editor-menu [toolbar]="toolbar" [editor]="editor"> </ngx-editor-menu>
     <!-- Componente del editor con enlace a la variable html usando ngModel -->
     <ngx-editor [editor]="editor" [(ngModel)]="html" (ngModelChange)="onContentChange($event)" [disabled]="false" placeholder="Escribe aquí..."></ngx-editor>
   </div>

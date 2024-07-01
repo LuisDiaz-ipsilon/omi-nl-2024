@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Editor } from 'ngx-editor';
+import { Editor, Toolbar } from 'ngx-editor';
 import Content from 'src/app/interfaces/content.interface';
 import { ContentService } from 'src/app/services/content.service';
 
@@ -12,6 +12,16 @@ export class EditorInicioComponent implements OnInit, OnDestroy {
   editor!: Editor;
   html = '';
   private content: Content | undefined;
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
 
   constructor(public contentService: ContentService) {}
 
@@ -25,9 +35,9 @@ export class EditorInicioComponent implements OnInit, OnDestroy {
 
   confirmContent(): void {
     // Actualizar el contenido en el servicio
-    this.content!.id = '1'
-    this.content!.nombre = 'inicio'
-    this.content!.contenido = this.html
+    this.content!.id = '1';
+    this.content!.nombre = 'inicio';
+    this.content!.contenido = this.html;
     this.updateContent(this.content!);
   }
 
