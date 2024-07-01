@@ -4,5 +4,7 @@
     <!-- Componente del editor con enlace a la variable html usando ngModel -->
     <ngx-editor [editor]="editor" [(ngModel)]="html" (ngModelChange)="onContentChange($event)" [disabled]="false" placeholder="Escribe aquí..."></ngx-editor>
   </div>
-  <button (click)="confirmContent()">Confirmar</button>
+   <button (click)="confirmContent()" class="mt-4 px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+    Confirmar
+  </button>
 </div>

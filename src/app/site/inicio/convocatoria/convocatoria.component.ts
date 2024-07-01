@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class ConvocatoriaComponent {
   registrarse() {
-    window.location.href = 'https://forms.gle/CAC7dw1wtC2PEwD96';
+    window.open('https://forms.gle/CAC7dw1wtC2PEwD96', '_blank');
+    //window.location.href = 'https://forms.gle/CAC7dw1wtC2PEwD96';
   }
+
 }

@@ -8,6 +8,7 @@ import { EnlacesComponent } from './enlaces/enlaces.component';
 import { MaterialesComponent } from './materiales/materiales.component';
 import { EjemplosComponent } from './ejemplos/ejemplos.component';
 import { ExamenesComponent } from './examenes/examenes.component';
+import { DonarComponent } from './inicio/donar/donar.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: 'materiales', component: MaterialesComponent },
       { path: 'ejemplos', component: EjemplosComponent },
       { path: 'examenes', component: ExamenesComponent },
+      { path: 'donar', component: DonarComponent },
     ],
   },
   {

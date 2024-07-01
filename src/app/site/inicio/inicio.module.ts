@@ -12,6 +12,7 @@ import { NgxEditorModule } from 'ngx-editor';
 import { FormsModule } from '@angular/forms';
 import { ContentService } from 'src/app/services/content.service';
 import { HttpClientModule } from '@angular/common/http';
+import { DonarComponent } from './donar/donar.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     NlnComponent,
     MioiComponent,
     ConvocatoriaComponent,
-    DonacionComponent
+    DonacionComponent,
+    DonarComponent
   ],
   imports: [CommonModule, InicioRoutingModule, NgxEditorModule, FormsModule, HttpClientModule],
   providers: [ContentService],
