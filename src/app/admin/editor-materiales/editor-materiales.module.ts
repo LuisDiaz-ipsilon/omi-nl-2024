@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxEditorModule } from 'ngx-editor';
 
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgxEditorModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    NgxEditorModule,
+    FormsModule
+  ],
 })
-export class EditorEnlacesModule {}
+export class EditorMaterialesModule {}

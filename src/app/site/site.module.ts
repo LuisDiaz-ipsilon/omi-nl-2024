@@ -16,10 +16,11 @@ import { NgxEditorModule } from 'ngx-editor';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, FooterComponent],
   imports: [
     CommonModule,
     SiteRoutingModule,

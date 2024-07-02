@@ -4,6 +4,7 @@ import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.compo
 import { EditorInicioComponent } from './editor-inicio/editor-inicio.component';
 import { EditorGaleriaComponent } from './editor-galeria/editor-galeria.component';
 import { EditorEnlacesComponent } from './editor-enlaces/editor-enlaces.component';
+import { EditorMaterialesComponent } from './editor-materiales/editor-materiales.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
       { path: 'editor-inicio', component: EditorInicioComponent },
       { path: 'editor-galeria', component: EditorGaleriaComponent },
       { path: 'editor-enlaces', component: EditorEnlacesComponent },
+      { path: 'editor-materiales', component: EditorMaterialesComponent },
       { path: '', redirectTo: 'editor-inicio', pathMatch: 'full' },
     ],
   },
