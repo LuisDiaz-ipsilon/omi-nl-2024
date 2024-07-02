@@ -4,11 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-
+    "build": "ng build --prod",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "preinstall": "npm install --force --legacy-peer-deps",
-    "build": "ng build --prod"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
