@@ -4,11 +4,11 @@ import Content from 'src/app/interfaces/content.interface';
 import { ContentService } from 'src/app/services/content.service';
 
 @Component({
-  selector: 'app-editor-inicio',
-  templateUrl: './editor-inicio.component.html',
-  styleUrls: ['./editor-inicio.component.scss'],
+  selector: 'app-editor-enlaces',
+  templateUrl: './editor-enlaces.component.html',
+  styleUrls: ['./editor-enlaces.component.scss'],
 })
-export class EditorInicioComponent implements OnInit, OnDestroy {
+export class EditorEnlacesComponent implements OnInit, OnDestroy{
   editor!: Editor;
   html = '';
   private content: Content | undefined;
@@ -29,14 +29,14 @@ export class EditorInicioComponent implements OnInit, OnDestroy {
     // Inicializar el editor
     this.editor = new Editor();
 
-    //Escribir lo que contenga el registro actual con el id 1
-    this.getContentById('1');
+    //Escribir lo que contenga el registro actual con el id 2
+    this.getContentById('2');
   }
 
   confirmContent(): void {
     // Actualizar el contenido en el servicio
-    this.content!.id = '1';
-    this.content!.nombre = 'Inicio';
+    this.content!.id = '2';
+    this.content!.nombre = 'Enlaces';
     this.content!.contenido = this.html;
     this.updateContent(this.content!);
   }

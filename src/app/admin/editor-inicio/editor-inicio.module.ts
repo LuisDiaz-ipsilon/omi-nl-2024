@@ -12,10 +12,7 @@ import { NgxEditorModule } from 'ngx-editor';
 
   ],
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgxEditorModule
+    CommonModule, FormsModule, ReactiveFormsModule, NgxEditorModule
   ]
 })
 export class EditorInicioModule { }

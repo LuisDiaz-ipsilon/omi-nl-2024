@@ -9,10 +9,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { EditorInicioComponent } from './editor-inicio/editor-inicio.component';
 import { NgxEditorModule } from 'ngx-editor';
 import { EditorGaleriaComponent } from './editor-galeria/editor-galeria.component';
+import { EditorEnlacesComponent } from './editor-enlaces/editor-enlaces.component';
 
 
 @NgModule({
-  declarations: [DashboardAdminComponent, EditorInicioComponent, EditorGaleriaComponent],
+  declarations: [DashboardAdminComponent, EditorInicioComponent, EditorGaleriaComponent, EditorEnlacesComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 import { EditorInicioComponent } from './editor-inicio/editor-inicio.component';
 import { EditorGaleriaComponent } from './editor-galeria/editor-galeria.component';
+import { EditorEnlacesComponent } from './editor-enlaces/editor-enlaces.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,7 @@ const routes: Routes = [
     children: [
       { path: 'editor-inicio', component: EditorInicioComponent },
       { path: 'editor-galeria', component: EditorGaleriaComponent },
+      { path: 'editor-enlaces', component: EditorEnlacesComponent },
       { path: '', redirectTo: 'editor-inicio', pathMatch: 'full' },
     ],
   },

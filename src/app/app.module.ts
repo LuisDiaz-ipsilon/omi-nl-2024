@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 import { initializeApp, /*provideFirebaseApp*/ } from 'firebase/app';
 import {provideFirestore, getFirestore} from '@angular/fire/firestore'
 import { provideFirebaseApp } from '@angular/fire/app';
+import { NgxEditorComponent } from 'ngx-editor';
 
 
 @NgModule({
