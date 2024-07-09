@@ -8,6 +8,9 @@
       }
     }
   ],
+  "hooks": {
+    "build": "npm install --force && npm run build"
+  },
   "routes": [
     {
       "src": "/(.*)",
