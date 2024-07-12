@@ -12,12 +12,5 @@ export class AuthComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  login(): void {
-    this.router.navigate(['/admin-editor']);
-    if (this.authService.login(this.password)) {
-      this.router.navigate(['/admin-editor']);
-    } else {
-      alert('Contraseña incorrecta');
-    }
-  }
+
 }

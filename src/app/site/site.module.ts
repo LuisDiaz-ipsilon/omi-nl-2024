@@ -12,7 +12,6 @@ import { EjemplosModule } from './ejemplos/ejemplos.module';
 import { ExamenesModule } from './examenes/examenes.module';
 import { RouteReuseStrategy } from '@angular/router';
 import { CustomRouteReuseStrategy } from '../utils/custom-route-reuse-strategy';
-import { NgxEditorModule } from 'ngx-editor';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
@@ -30,7 +29,6 @@ import { FooterComponent } from './footer/footer.component';
     MaterialesModule,
     EjemplosModule,
     ExamenesModule,
-    NgxEditorModule,
     provideFirestore(() => getFirestore()),
     //AngularFireModule.initializeApp(environment.firebase),
   ],

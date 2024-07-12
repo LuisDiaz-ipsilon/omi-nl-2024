@@ -9,12 +9,6 @@ const routes: Routes = [
       import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path: 'admin-editor',
-    loadChildren: () =>
-      import('./admin/admin.module').then((m) => m.AdminModule),
-    canActivate: [authGuard],
-  },
-  {
     path: '',
     loadChildren: () => import('./site/site.module').then((m) => m.SiteModule),
   },
