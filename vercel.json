@@ -2,10 +2,8 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": ["*"]
-      }
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist/omi" }
     }
   ],
   "routes": [
