@@ -4,8 +4,6 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "preinstall": "npm install --no-save ngx-editor@17.5.4 && npm uninstall ngx-editor",
-    "postinstall": "npm install ngx-editor@17.5.4",
     "build": "ng build --configuration production",
     "vercel-build": "npm install --force && npm run build",
     "watch": "ng build --watch --configuration development",
@@ -23,7 +21,8 @@
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
     "firebase": "^10.12.2",
-    "ngx-editor": "^17.5.4",
+    "ngx-editor": "^15.3.0",
+    "prosemirror-view": "^1.33.8",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

@@ -19,7 +19,7 @@ import { NgxEditorComponent } from 'ngx-editor';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SiteModule,
+
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())
