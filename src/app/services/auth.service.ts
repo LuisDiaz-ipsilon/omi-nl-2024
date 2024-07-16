@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly password: string = 'pass123';
+  private readonly password: string = 'omi123';
   private isAuthenticated: boolean = false;
 
   constructor(private router: Router) {}
