@@ -15,10 +15,6 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path: '',
-    loadChildren: () => import('./site/site.module').then((m) => m.SiteModule),
-  },
-  {
     path: '**',
     redirectTo: '',
     //loadChildren: () => import('./site/site.module').then(m => m.SiteModule)
