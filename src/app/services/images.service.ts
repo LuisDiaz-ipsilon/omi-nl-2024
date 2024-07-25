@@ -43,7 +43,7 @@ export class ImagesService {
     try {
       const { error } = await this.supabase.storage
         .from('images')
-        .remove(['/'+filename]);
+        .remove([filename]);
 
       if (error) throw error;
       console.log('Image deleted successfully');

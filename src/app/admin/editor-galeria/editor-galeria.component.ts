@@ -47,12 +47,20 @@ export class EditorGaleriaComponent implements OnInit {
   }
 
   async deleteImage(imageUrl: string) {
-    const fileName = imageUrl.split('/').pop();
+    let fileName = imageUrl.split('/').pop();
+    fileName = fileName!.split('?').shift();
     if (fileName) {
       await this.imagesService.deleteImage(fileName);
       this.images = this.images.filter(image => image.src !== imageUrl);
       this.loadImages();
     }
+  }
+
+  private _extractFileName(url: string): string {
+    // Usar una expresión regular para extraer el nombre del archivo
+    const regex = /\/([^\/?#]+)(?:\?.*)?$/;
+    const matches = url.match(regex);
+    return matches ? matches[1] : '';
   }
 
   async loadImages() {
