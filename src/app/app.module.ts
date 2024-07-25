@@ -12,6 +12,7 @@ import { initializeApp, /*provideFirebaseApp*/ } from 'firebase/app';
 import {provideFirestore, getFirestore} from '@angular/fire/firestore'
 import { provideFirebaseApp } from '@angular/fire/app';
 import { NgxEditorComponent } from 'ngx-editor';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -19,8 +20,8 @@ import { NgxEditorComponent } from 'ngx-editor';
   imports: [
     BrowserModule,
     AppRoutingModule,
-
     ReactiveFormsModule,
+    HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())
 

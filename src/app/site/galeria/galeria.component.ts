@@ -1,14 +1,65 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { forkJoin, Observable } from 'rxjs';
+import { ImageObject, ImagesData } from 'src/app/interfaces/imagesData.interface';
+import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
   selector: 'app-galeria',
   templateUrl: './galeria.component.html',
   styleUrls: ['./galeria.component.scss'],
 })
-export class GaleriaComponent {
-  images = [
+export class GaleriaComponent implements OnInit{
+
+  images: any[] = [];
+  
+
+  constructor(private imagesService: ImagesService) {}
+  
+  ngOnInit() {
+    this.loadImages();
+  }
+
+  async loadImages() {
+    const imageUrls = await this.imagesService.getImages();
+
+    //el imageUrls contiene  
+    const fileNames = imageUrls.map(url => {
+        const parts = url.split('/');
+        return parts[parts.length - 1];
+    });
+    
+    console.log(fileNames);
+
+    this.getSignedUrls(fileNames).subscribe(
+      urls => this.images = urls,
+      error => console.error('Error getting signed URLs:', error)
+    );
+
+    const imgObjects: ImageObject[] = this.transformUrlsToImageObjects(this.images);
+    console.log(imgObjects);
+    
+  }
+
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  getSignedUrls(paths: string[]): Observable<string[]> {
+    const urlObservables = paths.map(path => this.imagesService.getSignedUrl(path));
+    return forkJoin(urlObservables);
+  }
+
+  transformUrlsToImageObjects(urls: string[]): ImageObject[] {
+    return urls.map((url, index) => ({
+      src: url,
+      alt: `Image ${index + 1}`,
+      caption: ' ',
+    }));
+  }
+
+  /*images = [
     {
-      src: 'https://vidauniversitaria.uanl.mx/wp-content/uploads/2023/11/premiacion-certamen-altares-muertos-7.jpg',
+      src: ' ',
       alt: 'Image 1',
       caption: 'Evento 1',
     },
@@ -78,9 +129,9 @@ export class GaleriaComponent {
       caption: 'Evento 15',
     },
     {
-      src: 'https://abcnoticias.mx/u/fotografias/m/2023/6/30/f960x540-214283_288358_4638.png',
+      src: 'https://ekanlpkfqhhnbnyzbxtc.supabase.co/storage/v1/object/sign/images/FB_IMG_1695165318500.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvRkJfSU1HXzE2OTUxNjUzMTg1MDAuanBnIiwiaWF0IjoxNzIxNzY0MzYzLCJleHAiOjIwMzcxMjQzNjN9.evpjmSCrnskq3MwiqaldUs7zM5nh3EZ5rPiTDqNDCws&t=2024-07-23T19%3A52%3A44.021Z',
       alt: 'Image 8',
       caption: 'Evento 16',
     },
-  ];
+  ];*/
 }
