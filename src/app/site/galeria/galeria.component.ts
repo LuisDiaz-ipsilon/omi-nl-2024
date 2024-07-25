@@ -34,27 +34,12 @@ export class GaleriaComponent implements OnInit{
       urls => this.images = urls,
       error => console.error('Error getting signed URLs:', error)
     );
-
-    const imgObjects: ImageObject[] = this.transformUrlsToImageObjects(this.images);
-    console.log(imgObjects);
     
-  }
-
-  delay(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   getSignedUrls(paths: string[]): Observable<string[]> {
     const urlObservables = paths.map(path => this.imagesService.getSignedUrl(path));
     return forkJoin(urlObservables);
-  }
-
-  transformUrlsToImageObjects(urls: string[]): ImageObject[] {
-    return urls.map((url, index) => ({
-      src: url,
-      alt: `Image ${index + 1}`,
-      caption: ' ',
-    }));
   }
 
   /*images = [

@@ -39,6 +39,19 @@ export class ImagesService {
     }
   }
 
+  async deleteImage(filename: string): Promise<void> {
+    try {
+      const { error } = await this.supabase.storage
+        .from('images')
+        .remove([filename]);
+
+      if (error) throw error;
+      console.log('Image deleted successfully');
+    } catch (error) {
+      console.error('Error deleting image:', error);
+    }
+  }
+
   async getImageList(): Promise<ImagesData[]> {
     try {
       const { data, error } = await this.supabase

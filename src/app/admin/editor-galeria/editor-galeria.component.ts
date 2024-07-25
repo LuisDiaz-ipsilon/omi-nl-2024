@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { forkJoin, Observable } from 'rxjs';
 import { ImagesService } from 'src/app/services/images.service';
 
 interface GalleryImage {
@@ -11,31 +12,70 @@ interface GalleryImage {
   templateUrl: './editor-galeria.component.html',
   styleUrls: ['./editor-galeria.component.scss'],
 })
-export class EditorGaleriaComponent {
-  images: GalleryImage[] = [];
+export class EditorGaleriaComponent implements OnInit {
+  selectedFile: File | null = null;
+  uploadError: string | null = null;
 
-  constructor(private imageService: ImagesService) {}
+  images: any[] = [];
+
+  constructor(private imagesService: ImagesService) { }
 
   ngOnInit() {
     this.loadImages();
-    console.log(this.images);
   }
 
-  async onFileSelected(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const imageUrl = await this.imageService.uploadImage(file);
-      if (imageUrl) {
-        // Aquí puedes pedir al usuario una descripción de la imagen
-        const description = prompt(
-          'Por favor, proporciona una breve descripción de la imagen:'
-        );
-        this.images.push({ url: imageUrl, description: description || '' });
-      }
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0] ?? null;
+  }
+
+  async uploadImage(event: Event) {
+    event.preventDefault();
+    if (!this.selectedFile) {
+      this.uploadError = 'No file selected';
+      return;
+    }
+
+    const url = await this.imagesService.uploadImage(this.selectedFile);
+    if (url) {
+      this.uploadError = null;
+      // Aquí puedes actualizar la galería o realizar alguna acción con el URL
+      console.log('Image uploaded successfully:', url);
+      this.loadImages();
+    } else {
+      this.uploadError = 'Error uploading image';
+    }
+  }
+
+  async deleteImage(imageUrl: string) {
+    const fileName = imageUrl.split('/').pop();
+    if (fileName) {
+      await this.imagesService.deleteImage(fileName);
+      this.images = this.images.filter(image => image.src !== imageUrl);
+      this.loadImages();
     }
   }
 
   async loadImages() {
-    const imageUrls = await this.imageService.getImageList();
+    const imageUrls = await this.imagesService.getImages();
+
+    //el imageUrls contiene  
+    const fileNames = imageUrls.map(url => {
+      const parts = url.split('/');
+      return parts[parts.length - 1];
+    });
+
+    console.log(fileNames);
+
+    this.getSignedUrls(fileNames).subscribe(
+      urls => this.images = urls,
+      error => console.error('Error getting signed URLs:', error)
+    );
+
   }
+
+  getSignedUrls(paths: string[]): Observable<string[]> {
+    const urlObservables = paths.map(path => this.imagesService.getSignedUrl(path));
+    return forkJoin(urlObservables);
+  }
+
 }
