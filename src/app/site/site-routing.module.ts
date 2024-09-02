@@ -22,7 +22,7 @@ const routes: Routes = [
       { path: 'enlaces', component: EnlacesComponent },
       { path: 'materiales', component: MaterialesComponent },
       { path: 'ejemplos', component: EjemplosComponent },
-      { path: 'examenes', component: ExamenesComponent },
+      { path: 'examenes', component: ExamenesComponent }, 
       { path: 'donar', component: DonarComponent },
     ],
   },

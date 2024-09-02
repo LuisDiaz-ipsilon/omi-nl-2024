@@ -11,10 +11,11 @@ import { NgxEditorModule } from 'ngx-editor';
 import { EditorGaleriaComponent } from './editor-galeria/editor-galeria.component';
 import { EditorEnlacesComponent } from './editor-enlaces/editor-enlaces.component';
 import { EditorMaterialesComponent } from './editor-materiales/editor-materiales.component';
+import { EditorExamenesComponent } from './editor-examenes/editor-examenes.component';
 
 
 @NgModule({
-  declarations: [DashboardAdminComponent, EditorInicioComponent, EditorGaleriaComponent, EditorEnlacesComponent, EditorMaterialesComponent],
+  declarations: [DashboardAdminComponent, EditorInicioComponent, EditorGaleriaComponent, EditorEnlacesComponent, EditorMaterialesComponent, EditorExamenesComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

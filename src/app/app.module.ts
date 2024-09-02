@@ -13,6 +13,7 @@ import {provideFirestore, getFirestore} from '@angular/fire/firestore'
 import { provideFirebaseApp } from '@angular/fire/app';
 import { NgxEditorComponent } from 'ngx-editor';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthSiteModule } from './auth-site/auth-site.module';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    AuthSiteModule
 
 
   ],

@@ -13,5 +13,6 @@ export class DashboardComponent {
   navigateTo(page: string): void {
     this.router.navigate([page]);
   }
+  
 
 }
