@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
+/** 
+ * Este service solo sirve para la authentificacion de administrador, la qye se accese a 
+ * 'https://dominio/admin'
+**/
+
+
 @Injectable({
   providedIn: 'root',
 })
