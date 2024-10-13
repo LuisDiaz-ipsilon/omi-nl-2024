@@ -23,7 +23,7 @@ export class AuthSiteService {
 
   // Método para iniciar sesión
   login(credentials: { email: string, pass: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/`, credentials, {
+    return this.http.post(`${this.apiUrl}`, credentials, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
