@@ -11,14 +11,22 @@ import { ContentService } from 'src/app/services/content.service';
 export class ExamenesComponent {
   html: SafeHtml = '';
   private content: Content | undefined;
+  private escolaridadExamenReferencia: string = '';
 
   constructor(
     private contentService: ContentService,
     private sanitizer: DomSanitizer
   ) {}
 
+  //Conocer la escolaridad del estudiante para determinar que examenes podra ver en la plataforma.
+  obtenerEscolaridad(){
+    //ToDo encontrar la escolaridad y determinar si vera los examanes para primaria(4), secundaria (5), secundaria(6), prepa(7), universidad(8);
+    this.escolaridadExamenReferencia = '5';
+    this.getContentById(this.escolaridadExamenReferencia);
+  }
+
   ngOnInit(): void {
-    this.getContentById('4'); // Replace 'someContentId' with the actual id
+    this.obtenerEscolaridad();
   }
 
   getContentById(id: string): void {

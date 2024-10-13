@@ -9,6 +9,8 @@ import { MaterialesComponent } from './materiales/materiales.component';
 import { EjemplosComponent } from './ejemplos/ejemplos.component';
 import { ExamenesComponent } from './examenes/examenes.component';
 import { DonarComponent } from './inicio/donar/donar.component';
+import { nodes } from 'ngx-editor';
+import { NotasComponent } from './notas/notas.component';
 
 
 const routes: Routes = [
@@ -24,6 +26,7 @@ const routes: Routes = [
       { path: 'ejemplos', component: EjemplosComponent },
       { path: 'examenes', component: ExamenesComponent }, 
       { path: 'donar', component: DonarComponent },
+      { path: 'notas', component: NotasComponent}
     ],
   },
   {
