@@ -14,6 +14,7 @@ export class AuthSiteService {
 
   // Método para registrar un nuevo usuario
   register(userData: any): Observable<any> {
+    console.log(userData)
     return this.http.post(`${this.apiUrl}/new`, userData, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -37,5 +38,11 @@ export class AuthSiteService {
         'Authorization': `Bearer ${token}`
       })
     });
+  }
+
+  // Método para verificar si el usuario está logueado
+  isLoggedIn(): boolean {
+    const token = localStorage.getItem('token'); // Obtener el token del localStorage
+    return !!token; // Devuelve true si el token existe, false si no
   }
 }
