@@ -1,15 +1,28 @@
 <header class="bg-white shadow">
     <div class="container mx-auto px-4 py-6 flex justify-between items-center">
-        <div class="text-2xl font-bold text-gray-800 cursor-pointer" (click)="navigateTo('')">OMI NL </div>
+        <div class="text-2xl font-bold text-gray-800 cursor-pointer" (click)="navigateTo('')">OMI NL</div>
         <nav class="space-x-4 flex items-center">
             <a routerLink="/inicio" class="text-gray-600 hover:text-gray-900">Inicio</a>
             <a routerLink="/galeria" class="text-gray-600 hover:text-gray-900">Galeria</a>
             <a routerLink="/enlaces" class="text-gray-600 hover:text-gray-900">Enlaces</a>
             <a routerLink="/materiales" class="text-gray-600 hover:text-gray-900">Materiales</a>
             <a routerLink="/examenes" class="text-gray-600 hover:text-gray-900">Examenes</a>
-            <a routerLink="/notas" class="text-gray-600 hover:text-gray-900">Documentos</a>
-            <!--a routerLink="/examenes" class="text-gray-600 hover:text-gray-900">Examenes</a-->
-            <button 
+            <a routerLink="/notas" class="text-gray-600 hover:text-gray-900" *ngIf="isLoggedIn"> Mis Documentos</a>
+            
+            <!-- Contenedor para el saludo y el botón de logout -->
+            <div *ngIf="isLoggedIn" class="ml-6 flex flex-col items-center">
+                <span class="text-gray-800 font-semibold text-sm mb-2">
+                    👋 Hola, {{ username }}
+                </span>
+                <button 
+                    (click)="logout()"
+                    class="bg-red-500 text-white text-sm px-2 py-2 rounded-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300">
+                    Log out
+                </button>
+            </div>
+
+            <!-- Mostrar botón de Login si el usuario NO está logueado -->
+            <button *ngIf="!isLoggedIn"
                 routerLink="/login"
                 class="ml-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
                 Log in
@@ -17,6 +30,7 @@
         </nav>
     </div>
 </header>
+
 <div class="mt-6">
     <router-outlet></router-outlet>
 </div>
