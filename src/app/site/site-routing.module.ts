@@ -25,7 +25,7 @@ const routes: Routes = [
       { path: 'enlaces', component: EnlacesComponent },
       { path: 'materiales', component: MaterialesComponent },
       { path: 'ejemplos', component: EjemplosComponent },
-      { path: 'examenes', component: ExamenesComponent }, 
+      { path: 'examenes', component: ExamenesComponent, canActivate: [authGuard]}, 
       { path: 'donar', component: DonarComponent },
       { path: 'notas', component: NotasComponent, canActivate: [authGuard]}
     ],
