@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import Content from 'src/app/interfaces/content.interface';
+import { AuthSiteService } from 'src/app/services/auth-site.service';
 import { ContentService } from 'src/app/services/content.service';
 
 @Component({
@@ -15,13 +16,23 @@ export class ExamenesComponent {
 
   constructor(
     private contentService: ContentService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private authSiteService: AuthSiteService
   ) {}
 
   //Conocer la escolaridad del estudiante para determinar que examenes podra ver en la plataforma.
   obtenerEscolaridad(){
     //ToDo encontrar la escolaridad y determinar si vera los examanes para primaria(4), secundaria (5), secundaria(6), prepa(7), universidad(8);
-    this.escolaridadExamenReferencia = '5';
+    if(this.authSiteService.getEscolaridad() === 'bachillerato'){
+      this.escolaridadExamenReferencia = '5'; //asi esta almacenado sobre el backend de informacion que esta sobre firebase
+    } else if(this.authSiteService.getEscolaridad() === 'ingenieria'){
+      this.escolaridadExamenReferencia = '6';
+    } else if(this.authSiteService.getEscolaridad() === 'primaria') {
+      this.escolaridadExamenReferencia = '7';
+    } else if(this.authSiteService.getEscolaridad() === 'secundaria') {
+      this.escolaridadExamenReferencia = '8';
+    }
+    console.log('estas con escolaridad: ', this.escolaridadExamenReferencia);
     this.getContentById(this.escolaridadExamenReferencia);
   }
 

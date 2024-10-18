@@ -39,6 +39,7 @@ export class LoginComponent {
           // Almacena el token si es necesario
           localStorage.setItem('token', response.token);
           localStorage.setItem('username', response.userName);
+          localStorage.setItem('schoolLevel', response.schoolLevel);
           // Redirigir al dashboard o página deseada después del inicio exitoso
           this.router.navigate(['/dashboard']);
         },

@@ -48,4 +48,8 @@ export class AuthSiteService {
   getUsername(): string | null {
     return localStorage.getItem('username');
   }
+
+  getEscolaridad(): string | null {
+    return localStorage.getItem('schoolLevel');
+  }
 }
