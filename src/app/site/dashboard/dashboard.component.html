@@ -6,9 +6,9 @@
             <a routerLink="/galeria" class="text-gray-600 hover:text-gray-900">Galeria</a>
             <a routerLink="/enlaces" class="text-gray-600 hover:text-gray-900">Enlaces</a>
             <a routerLink="/materiales" class="text-gray-600 hover:text-gray-900">Materiales</a>
-            <a routerLink="/examenes" class="text-gray-600 hover:text-gray-900">Examenes</a>
-            <a routerLink="/notas" class="text-gray-600 hover:text-gray-900" *ngIf="isLoggedIn"> Mis Documentos</a>
-            
+            <a routerLink="/examenes" class="text-teal-700 hover:text-teal-900" *ngIf="isLoggedIn">Examenes</a>
+            <a routerLink="/notas" class="text-teal-700 hover:text-teal-900" *ngIf="isLoggedIn"> Mis Documentos</a>
+
             <!-- Contenedor para el saludo y el botón de logout -->
             <div *ngIf="isLoggedIn" class="ml-6 flex flex-col items-center">
                 <span class="text-gray-800 font-semibold text-sm mb-2">
