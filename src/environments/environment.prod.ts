@@ -10,5 +10,5 @@ export const environment = {
   },
   supabaseUrl: 'https://ekanlpkfqhhnbnyzbxtc.supabase.co',
   supabaseKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVrYW5scGtmcWhobmJueXpieHRjIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcyMTc2NDEyOSwiZXhwIjoyMDM3MzQwMTI5fQ.EoZFaAg0w9ONABZPJsrvUOdguzF_tcBGo8HqSnAVKqI',
+  authSiteURL: 'https://nest-backend-omi.vercel.app/api/auth'
 };
-//GITIGNORE

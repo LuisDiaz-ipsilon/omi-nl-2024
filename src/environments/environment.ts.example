@@ -1,0 +1,15 @@
+export const environment = {
+  production: false,
+  firebase: {
+    apiKey: 'AIza3NZDe2Dt_BgiyDkMQ',
+    authDomain: 'db-da3p.com',
+    projectId: 'db-dat3i',
+    storageBucket: 'db-data3ot.com',
+    messagingSenderId: '32323',
+    appId: '1:uuu:web:8b787af2ade2d997c9b1f9',
+  },
+  supabaseUrl: 'https://iuiu.supabase.co',
+  supabaseKey: '',
+  authSiteURL: 'h'
+};
+//GITIGNORE

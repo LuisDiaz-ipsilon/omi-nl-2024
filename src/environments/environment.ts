@@ -10,6 +10,6 @@ export const environment = {
   },
   supabaseUrl: 'https://ekanlpkfqhhnbnyzbxtc.supabase.co',
   supabaseKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVrYW5scGtmcWhobmJueXpieHRjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjE3NjQxMjksImV4cCI6MjAzNzM0MDEyOX0.mLlyk7Mx-RgnVtEmJV5c8idj-cGhTrgxUJZxTv0oDRA',
-  authSiteURL: 'https://nest-backend-omi.vercel.app/api/auth'
+  authSiteURL: 'http://localhost:3000/api/auth'
 };
 //GITIGNORE
