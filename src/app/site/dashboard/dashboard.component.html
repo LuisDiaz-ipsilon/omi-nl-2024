@@ -12,7 +12,7 @@
             <!-- Contenedor para el saludo y el botón de logout -->
             <div *ngIf="isLoggedIn" class="ml-6 flex flex-col items-center">
                 <span class="text-gray-800 font-semibold text-sm mb-2">
-                    👋 Hola, {{ username }}
+                    👋 Hola {{ username }}
                 </span>
                 <button 
                     (click)="logout()"
