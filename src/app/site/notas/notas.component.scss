@@ -1,0 +1,50 @@
+/* notas.component.scss */
+.container {
+    padding: 20px;
+  
+    h1 {
+      text-align: center;
+    }
+  
+    .upload-section {
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+  
+      input[type='file'] {
+        flex: 1;
+      }
+  
+      button {
+        padding: 5px 15px;
+      }
+    }
+  
+    .files-list {
+      h2 {
+        margin-bottom: 15px;
+      }
+  
+      table {
+        width: 100%;
+        border-collapse: collapse;
+  
+        th,
+        td {
+          padding: 10px;
+          border: 1px solid #ccc;
+          text-align: left;
+        }
+  
+        th {
+          background-color: #f5f5f5;
+        }
+  
+        button {
+          padding: 5px 10px;
+        }
+      }
+    }
+  }
+  

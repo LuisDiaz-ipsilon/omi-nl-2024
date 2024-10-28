@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { NotasRoutingModule } from './notas-routing.module';
 import { NotasComponent } from './notas.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { NotasComponent } from './notas.component';
   ],
   imports: [
     CommonModule,
-    NotasRoutingModule
+    NotasRoutingModule,
+    HttpClientModule,
+    FormsModule
   ]
 })
 export class NotasModule { }

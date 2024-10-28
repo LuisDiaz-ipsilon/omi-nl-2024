@@ -14,6 +14,7 @@ import { provideFirebaseApp } from '@angular/fire/app';
 import { NgxEditorComponent } from 'ngx-editor';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthSiteModule } from './auth-site/auth-site.module';
+import { NotasModule } from './site/notas/notas.module';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { AuthSiteModule } from './auth-site/auth-site.module';
     HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
-    AuthSiteModule
+    AuthSiteModule,
+    NotasModule
 
 
   ],
