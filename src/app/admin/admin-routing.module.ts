@@ -6,6 +6,7 @@ import { EditorGaleriaComponent } from './editor-galeria/editor-galeria.componen
 import { EditorEnlacesComponent } from './editor-enlaces/editor-enlaces.component';
 import { EditorMaterialesComponent } from './editor-materiales/editor-materiales.component';
 import { EditorExamenesComponent } from './editor-examenes/editor-examenes.component';
+import { AdminArchivosComponent } from './admin-archivos/admin-archivos.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'editor-enlaces', component: EditorEnlacesComponent },
       { path: 'editor-materiales', component: EditorMaterialesComponent },
       { path: 'editor-examenes', component: EditorExamenesComponent },
+      { path: 'editor-archivos', component: AdminArchivosComponent },
       { path: '', redirectTo: 'editor-inicio', pathMatch: 'full' },
     ],
   },

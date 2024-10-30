@@ -1,0 +1,42 @@
+<!-- administrador-archivos.component.html -->
+<div class="container mx-auto p-6">
+    <h1 class="text-center text-3xl font-bold text-gray-800 mb-6">Administrador de Archivos</h1>
+  
+    <!-- Mostrar mensaje de carga -->
+    <div *ngIf="isLoading" class="text-center text-gray-600">
+      <svg class="animate-spin h-8 w-8 text-gray-600 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+      </svg>
+      Cargando archivos...
+    </div>
+  
+    <!-- Mostrar mensaje de error -->
+    <div *ngIf="errorMessage" class="text-center text-red-500 mb-4">
+      {{ errorMessage }}
+    </div>
+  
+    <!-- Lista de carpetas de usuarios y sus archivos -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div *ngFor="let usuarioArchivos of usuariosArchivos" class="bg-white rounded-lg shadow-md p-4">
+        <h2 class="text-xl font-semibold text-gray-700 mb-4">
+          {{ obtenerNombreCompleto(usuarioArchivos.usuario) }}
+          <span class="block text-sm text-gray-500">{{ usuarioArchivos.usuario.email }}</span>
+        </h2>
+        <ul>
+          <li *ngFor="let archivo of usuarioArchivos.archivos" class="flex items-center justify-between py-2 border-b">
+            <div>
+              <span class="text-gray-600">{{ archivo.filename }}</span>
+              <span class="text-xs text-gray-400 block">{{ archivo.createdAt | date:'short' }}</span>
+            </div>
+            <button
+              (click)="descargarArchivo(archivo.id, archivo.filename)"
+              class="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 active:bg-green-700 transition">
+              Descargar
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  

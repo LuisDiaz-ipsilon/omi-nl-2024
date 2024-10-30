@@ -12,10 +12,12 @@ import { EditorGaleriaComponent } from './editor-galeria/editor-galeria.componen
 import { EditorEnlacesComponent } from './editor-enlaces/editor-enlaces.component';
 import { EditorMaterialesComponent } from './editor-materiales/editor-materiales.component';
 import { EditorExamenesComponent } from './editor-examenes/editor-examenes.component';
+import { AdminArchivosComponent } from './admin-archivos/admin-archivos.component';
+import { ArhivosAdminService } from '../services/arhivos-admin.service';
 
 
 @NgModule({
-  declarations: [DashboardAdminComponent, EditorInicioComponent, EditorGaleriaComponent, EditorEnlacesComponent, EditorMaterialesComponent, EditorExamenesComponent],
+  declarations: [DashboardAdminComponent, EditorInicioComponent, EditorGaleriaComponent, EditorEnlacesComponent, EditorMaterialesComponent, EditorExamenesComponent, AdminArchivosComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
