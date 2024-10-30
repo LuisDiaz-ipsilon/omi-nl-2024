@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -23,11 +23,19 @@ export class AuthSiteService {
 
   // Método para iniciar sesión
   login(credentials: { email: string, pass: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}`, credentials, {
+    return this.http.post<any>(`${this.apiUrl}`, credentials, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
-    });
+    }).pipe(
+      tap(response => {
+        if (response && response.token) {
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('username', response.userName); // Asegúrate de que 'userName' es parte de la respuesta
+          localStorage.setItem('roles', JSON.stringify(response.roles)); // Almacenar los roles
+        }
+      })
+    );
   }
 
   // Método para renovar el token
@@ -51,5 +59,16 @@ export class AuthSiteService {
 
   getEscolaridad(): string | null {
     return localStorage.getItem('schoolLevel');
+  }
+
+  getRoles(): string[] {
+    const roles = localStorage.getItem('roles');
+    return roles ? JSON.parse(roles) : [];
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('roles');
   }
 }

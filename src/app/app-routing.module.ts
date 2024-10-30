@@ -5,11 +5,6 @@ import { authAdminGuard } from './guards/auth-admin.guard';
 
 const routes: Routes = [
   {
-    path: 'admin',
-    loadChildren: () =>
-      import('./auth/auth.module').then((m) => m.AuthModule),
-  },
-  {
     path: 'login',
     loadChildren: () => import('./auth-site/auth-site-routing.module').then((m) => m.AuthSiteRoutingModule)
   },
@@ -17,7 +12,7 @@ const routes: Routes = [
     path: 'admin-editor',
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
-    canActivate: [authAdminGuard],
+    canActivate: [authGuard],
   },
   {
     path: '',

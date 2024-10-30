@@ -10,6 +10,7 @@ import { AuthSiteService } from 'src/app/services/auth-site.service';
 export class DashboardComponent implements OnInit {
   isLoggedIn: boolean = false;
   username: string | null = null;
+  isAdmin: boolean = false; // Nueva propiedad para verificar el rol de admin
 
 
   constructor(private authService: AuthSiteService, private router: Router) {}
@@ -18,6 +19,7 @@ export class DashboardComponent implements OnInit {
     this.isLoggedIn = this.authService.isLoggedIn();
     if (this.isLoggedIn) {
       this.username = this.authService.getUsername();
+      this.checkIfAdmin(); // Verificar si el usuario es admin
     }
   }
   
@@ -31,6 +33,12 @@ export class DashboardComponent implements OnInit {
     localStorage.removeItem('token');
     this.isLoggedIn = false;
     this.router.navigate(['/inicio']);
+  }
+
+  // Método para verificar si el usuario tiene el rol de admin
+  checkIfAdmin(): void {
+    const roles = this.authService.getRoles();
+    this.isAdmin = roles.includes('admin');
   }
 
 }
