@@ -32,7 +32,6 @@ export class ExamenesComponent {
     } else if(this.authSiteService.getEscolaridad() === 'secundaria') {
       this.escolaridadExamenReferencia = '8';
     }
-    console.log('estas con escolaridad: ', this.escolaridadExamenReferencia);
     this.getContentById(this.escolaridadExamenReferencia);
   }
 
