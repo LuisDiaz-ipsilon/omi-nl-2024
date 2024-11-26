@@ -1,39 +1,82 @@
+<!-- src/app/components/editor-galeria/editor-galeria.component.html -->
 <div class="max-w-4xl mx-auto p-5 bg-white rounded-lg shadow-md">
   <header class="bg-gray-500 text-white p-4 rounded-t-lg">
-    <h1 class="text-2xl font-semibold">Editando seccion Galeria</h1>
+    <h1 class="text-2xl font-semibold">Editando sección Galería</h1>
   </header>
+
+  <!-- Sección de subida de imágenes (visible solo para admins) -->
   <div class="max-w-md mx-auto mt-10">
     <h2 class="text-2xl font-bold mb-4">Subir imagen</h2>
-    <form (submit)="uploadImage($event)" class="space-y-4">
-      <input 
-        type="file" 
-        (change)="onFileSelected($event)" 
-        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
-      />
+    <form [formGroup]="uploadForm" (ngSubmit)="uploadImage()" class="space-y-4">
+      <div>
+        <label for="file" class="block mb-2 font-semibold">Seleccionar imagen</label>
+        <input 
+          type="file" 
+          id="file" 
+          (change)="onFileSelected($event)" 
+          class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+          accept="image/*"
+          required
+        />
+        <div *ngIf="uploadForm.get('file')?.invalid && uploadForm.get('file')?.touched" class="text-red-500 text-sm">
+          Por favor, selecciona una imagen.
+        </div>
+      </div>
+
+      <div>
+        <label for="title" class="block mb-2 font-semibold">Título</label>
+        <input 
+          type="text" 
+          id="title" 
+          formControlName="title" 
+          placeholder="Título de la imagen"
+          class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          required
+        />
+        <div *ngIf="uploadForm.get('title')?.invalid && uploadForm.get('title')?.touched" class="text-red-500 text-sm">
+          El título es requerido.
+        </div>
+      </div>
+
+      <div>
+        <label for="description" class="block mb-2 font-semibold">Descripción</label>
+        <textarea 
+          id="description" 
+          formControlName="description" 
+          placeholder="Descripción de la imagen"
+          class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+        ></textarea>
+      </div>
+
       <button 
         type="submit" 
         class="w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
       >
-        Guardar
+        Subir Imagen
       </button>
     </form>
     <div *ngIf="uploadError" class="mt-4 text-red-500">{{ uploadError }}</div>
   </div>
-  
-  <div class="bg-white p-4">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <div *ngFor="let image of images" class="relative">
-            <img [src]="image" [alt]="image.alt" class="w-full h-auto object-cover" />
-            <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white text-sm p-2 w-full text-center">
-                {{ image.caption }}
-            </div>
-            <button 
-              (click)="deleteImage(image)" 
-              class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2 hover:bg-red-600 focus:outline-none">
-              &#x2716;
-            </button>
-        </div>
-    </div>
-</div>
-</div>
 
+  <!-- Galería de imágenes -->
+  <div class="bg-white p-4 mt-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div *ngFor="let image of images" class="relative">
+        <!-- Imagen -->
+        <img [src]="getImageUrl(image)" [alt]="image.description || 'Imagen de la galería'" class="w-full h-auto object-cover" />
+
+        <!-- Leyenda de la imagen -->
+        <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white text-sm p-2 w-full text-center">
+          {{ image.title || 'Sin Título' }}
+        </div>
+
+        <!-- Botón de eliminar (visible solo para admins) -->
+        <button 
+          (click)="deleteImage(image)" 
+          class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2 hover:bg-red-600 focus:outline-none">
+          &#x2716;
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,113 +1,83 @@
+// src/app/services/images.service.ts
 import { Injectable } from '@angular/core';
-
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { environment } from '../../../src/environments/environment';
-import { ImagesData } from '../interfaces/imagesData.interface';
-import { from, map, mergeMap, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { ImageBENest } from '../interfaces/ImageBackEndOmi';
+import { ImageAdminBENest } from '../interfaces/imagesData.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ImagesService {
-  private supabase: SupabaseClient;
+  private apiUrl = `${environment.imagesSiteURL}`;
 
-  constructor(private http: HttpClient) {
-    this.supabase = createClient(
-      environment.supabaseUrl,
-      environment.supabaseKey
-    );
+  constructor(private http: HttpClient) {}
+
+  /**
+   * Obtener todas las imágenes de la galería.
+   */
+  getImages(): Observable<ImageBENest[]> {
+    return this.http.get<ImageBENest[]>(`${this.apiUrl}`);
   }
 
-  async uploadImage(file: File): Promise<string | null> {
-    try {
-      const filename = `${Date.now()}_${file.name}`;
-      const { data, error } = await this.supabase.storage
-        .from('images')
-        .upload(filename, file);
+  /**
+   * Subir una nueva imagen a la galería.
+   * @param file Archivo de imagen a subir.
+   * @param title Título de la imagen (opcional).
+   * @param description Descripción de la imagen (opcional).
+   */
+  uploadImage(file: File, title?: string, description?: string): Observable<ImageBENest> {
 
-      if (error) throw error;
+    const headers = this.getAuthHeaders();
 
-      const { data: urlData } = this.supabase.storage
-        .from('images')
-        .getPublicUrl(filename);
+    const formData = new FormData();
+    formData.append('file', file);
+    if (title) formData.append('title', title);
+    if (description) formData.append('description', description);
+    return this.http.post<ImageBENest>(`${this.apiUrl}/upload`, formData,  { headers });
+  }
 
-      return urlData.publicUrl;
-    } catch (error) {
-      console.error('Error uploading image:', error);
-      return null;
+  /**
+   * Eliminar una imagen de la galería.
+   * @param id ID de la imagen a eliminar.
+   */
+  deleteImage(id: string): Observable<any> {
+
+    const headers = this.getAuthHeaders();
+
+    return this.http.delete(`${this.apiUrl}/${id}`, { headers });
+  }
+
+  /**
+   * Descargar una imagen específica.
+   * @param id ID de la imagen a descargar.
+   */
+  downloadImage(id: string): Observable<Blob> {
+    return this.http.get(`${this.apiUrl}/download/${id}`, { responseType: 'blob' });
+  }
+
+  /**
+   * Obtener todos los archivos como administrador.
+   */
+  getFilesByAdmin(): Observable<ImageAdminBENest[]> {
+    return this.http.get<ImageAdminBENest[]>(`${this.apiUrl}/files-by-admin`);
+  }
+
+  /**
+   * Obtener datos de un usuario por email.
+   * @param email Email del usuario.
+   */
+  getUserData(email: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${email}`);
+  }
+
+    // Método para obtener los headers de autenticación
+    private getAuthHeaders(): HttpHeaders {
+      const token = localStorage.getItem('token'); // Asegúrate de que el token se almacena bajo 'token'
+      return new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+      });
     }
-  }
-
-  async deleteImage(filename: string): Promise<void> {
-    try {
-      const { error } = await this.supabase.storage
-        .from('images')
-        .remove([filename]);
-
-      if (error) throw error;
-      console.log('Image deleted successfully');
-    } catch (error) {
-      console.error('Error deleting image:', error);
-    }
-  }
-
-  async getImageList(): Promise<ImagesData[]> {
-    try {
-      const { data, error } = await this.supabase
-        .from('images')
-        .select('*')
-        .eq('active', true)
-        .eq('type', 1);
-
-      if (error) {
-        throw error;
-      }
-
-      //console.log('Datos obtenidos:', data);
-      return data as ImagesData[];
-    } catch (error) {
-      console.error('Error al obtener la lista de imágenes:', error);
-      return [];
-    }
-  }
-
-  async getImages(): Promise<string[]> {
-    let imageLinks: string[] = [];
-
-    // Obtén todos los archivos del bucket 'images'
-    const { data, error } = await this.supabase.storage.from('images').list();
-
-    if (error) {
-      console.error('Error fetching images:', error);
-      return [];
-    }
-
-    if (data) {
-      for (const file of data) {
-        const { data: publicUrlData } = this.supabase.storage.from('images').getPublicUrl(file.name);
-        if (publicUrlData) {
-          imageLinks.push(publicUrlData.publicUrl);
-        }
-      }
-    }
-
-    return imageLinks;
-  }
-
-  getSignedUrl(path: string): Observable<string> {
-    return from(this.supabase.storage.from('images').createSignedUrl(path, 60 * 60)) // 60 minutos
-      .pipe(
-        map(response => {
-          if (response.error) {
-            throw new Error(response.error.message);
-          }
-          return response.data.signedUrl;
-        })
-      );
-  }
-
-
-
-
+  
 }
