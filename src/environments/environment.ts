@@ -8,8 +8,6 @@ export const environment = {
     messagingSenderId: '277027403900',
     appId: '1:277027403900:web:8b787af2ade2d997c9b1f9',
   },
-  supabaseUrl: 'https://ekanlpkfqhhnbnyzbxtc.supabase.co',
-  supabaseKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVrYW5scGtmcWhobmJueXpieHRjIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcyMTc2NDEyOSwiZXhwIjoyMDM3MzQwMTI5fQ.EoZFaAg0w9ONABZPJsrvUOdguzF_tcBGo8HqSnAVKqI',
   authSiteURL: 'http://localhost:3000/api/auth',
   archivosSiteURL: 'http://localhost:3000/api/archivos',
   imagesSiteURL: 'http://localhost:3000/api/gallery',
